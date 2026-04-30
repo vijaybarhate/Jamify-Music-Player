@@ -1,8 +1,8 @@
 # 🎵 Jamify Music Player
 
-![HTML](https://img.shields.io/badge/HTML-5-orange)
-![CSS](https://img.shields.io/badge/CSS-3-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
 A modern web-based music player built using HTML, CSS, and JavaScript with a clean UI and essential music playback features.
 
@@ -10,39 +10,27 @@ A modern web-based music player built using HTML, CSS, and JavaScript with a cle
 
 ## 🚀 Features
 
-- 🎧 Play, pause, and control music tracks  
-- 🌙 Dark mode UI for better user experience  
-- 🔍 Recent searches tracking  
-- ❤️ Favorites system  
-- 📄 Track information display  
-- 🔗 Option to open songs on YouTube  
+- 🎧 Play, pause, and control music tracks
+- 🌙 Dark mode UI for better user experience
+- 🔍 Recent searches tracking
+- ❤️ Favorites system
+- 📄 Track information display
+- 🔗 Option to open songs on YouTube
 
 ---
 
 ## 🛠️ Tech Stack
 
-- HTML5  
-- CSS3  
+- HTML5
+- CSS3
 - JavaScript (Vanilla JS)
 
 ---
 
-## 📦 Installation / How to Run
+## 📦 How to Run
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/vijaybarhate/Jamify-Music-Player.git
-````
-
-2. Open the project folder:
-
-   ```bash
-   cd Jamify-Music-Player
-   ```
-
-3. Run the project:
-
-   * Open `index.html` in your browser
+1. Clone the repository
+2. Open `index.html` in your browser
 
 ---
 
@@ -50,23 +38,14 @@ A modern web-based music player built using HTML, CSS, and JavaScript with a cle
 
 *Add screenshots here*
 
-```
-/screenshots/home.png
-/screenshots/player.png
-```
-
 ---
 
 ## 🌐 Live Demo
 
-*Add your deployed link here*
+*Add deployed link here*
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
-
-````
-
----
+Open source under MIT License.
