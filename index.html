@@ -4,113 +4,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify - Your favourite music is here</title>
+    <title>Jamify - Your favourite music is here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li class="brand"><img src="LOGO 1.jpg" alt="JAMIFY"> JAMIFY</li>
-            <li>Home</li>
-            <li><a href="#" id="aboutLink">About</a></li>
-        </ul>
-    </nav>
-
-
-    <div class="container">
-        <div class="songList">
-            <h1>Shivrajya Vandan</h1>
-            <div class="songItemContainer">
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Shivba Raja</span>
-                    <span class="songlistplay"><span class="timestamp">2.08 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">5:42 <i id="1" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">4.18 <i id="2" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">2.44 <i id="3" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">5:48 <i id="4" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">1.21 <i id="5" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">4.45 <i id="5" class="far songItemPlay fa-play-circle"></i> </span></span>
-                
-                </div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="LOGO 1.jpg" alt="JAMIFY">
+                <span>JAMIFY</span>
             </div>
-        </div>
-        <div class="songBanner"></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><i class="fas fa-home"></i> Home</li>
+                    <li><i class="fas fa-search"></i> Search</li>
+                    <li><i class="fas fa-book"></i> Your Library</li>
+                    <li id="aboutLink"><i class="fas fa-info-circle"></i> About</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="What do you want to listen to?">
+                </div>
+            </header>
+            
+            <section class="content-section">
+                <h2>Shivrajya Vandan</h2>
+                <div id="songGrid" class="song-grid">
+                    <!-- Skeleton Cards (rendered by JS initially) or dynamic song cards -->
+                </div>
+            </section>
+        </main>
     </div>
 
-     <!-- About Modal (hidden by default) -->
-     <div id="aboutModal" class="modal">
+    <!-- About Modal (hidden by default) -->
+    <div id="aboutModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <h2>About JAMIFY</h2>
-            <p><strong>JAMIFY</strong> is a music streaming web application designed as part of our semester 3 mini-project. The goal of this project is to replicate a simplified version of popular music streaming platforms like Spotify.</p>
-            
-            <h3>Project Features:</h3>
+            <p><strong>JAMIFY</strong> is a music streaming web application designed to replicate a simplified version of popular music streaming platforms.</p>
+            <h3>Features:</h3>
             <ul style="text-align: left;">
                 <li>Play, pause, and skip through a list of preloaded songs.</li>
-                <li>Interactive user interface with song titles and playback controls.</li>
+                <li>Modern component-based UI with hover effects.</li>
                 <li>Responsive design for both desktop and mobile devices.</li>
-                <li>Progress bar to indicate song playback status.</li>
-                <li>Smooth and engaging user experience using JavaScript for song control.</li>
+                <li>Search filter for quick track discovery.</li>
             </ul>
-    
-            <h3>Technologies Used:</h3>
-            <ul style="text-align: left;">
-                <li><strong>HTML</strong> - For structuring the web page layout.</li>
-                <li><strong>CSS</strong> - For designing a visually appealing user interface.</li>
-                <li><strong>JavaScript</strong> - For dynamic song controls and interactions.</li>
-            </ul>
-    
-            <h3>Goal:</h3>
-            <p>The primary objective of this project is to deepen our understanding of front-end web development using core technologies. We aimed to create an interactive and responsive music player that mimics a real-world application, demonstrating practical coding skills in HTML, CSS, and JavaScript.</p>
-    
-            <h3>Team Members:</h3>
-            <p></p>
-    
             <button id="closeButton" class="modal-close-button">Close</button>
         </div>
     </div>
-    
 
-    <div class="bottom">
-        <!-- Already in your code -->
-        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
-        <div class="icons">
-            <i class="fas fa-3x fa-step-backward" id="previous"></i>
-            <i class="far fa-3x fa-play-circle" id="masterPlay"></i>
-            <i class="fas fa-3x fa-step-forward" id="next"></i>
+    <!-- Bottom Player -->
+    <footer class="player-bar">
+        <div class="player-left">
+            <img src="covers/1.jpg" alt="Cover" id="playerCover" class="player-cover">
+            <div class="player-info">
+                <span id="masterSongName">Shwasat Raja</span>
+                <span class="player-artist">Jamify Mix</span>
+            </div>
         </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42px" alt="" id="gif">
-            <span id="masterSongName">Shwasat Raja</span>
+        
+        <div class="player-center">
+            <div class="player-controls">
+                <i class="fas fa-step-backward" id="previous"></i>
+                <i class="fas fa-play-circle" id="masterPlay"></i>
+                <i class="fas fa-step-forward" id="next"></i>
+            </div>
+            <div class="progress-container">
+                <span id="currentTime" class="time-text">0:00</span>
+                <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+                <span id="totalDuration" class="time-text">0:00</span>
+            </div>
         </div>
-    </div>
+        
+        <div class="player-right">
+             <img src="playing.gif" alt="Playing" id="gif" class="playing-gif">
+        </div>
+    </footer>
 
     <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </body>
 </html>
