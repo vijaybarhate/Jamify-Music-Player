@@ -1,4 +1,3 @@
-````markdown
 # 🎵 Jamify Music Player
 
 ![HTML](https://img.shields.io/badge/HTML-5-orange)
