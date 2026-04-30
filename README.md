@@ -42,7 +42,7 @@ A modern web-based music player built using HTML, CSS, and JavaScript with a cle
 
 ## 🌐 Live Demo
 
-*Add deployed link here*
+*[Add deployed link here](https://vijaybarhate.github.io/Jamify-Music-Player/)*
 
 ---
 
