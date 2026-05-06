@@ -1,76 +1,114 @@
-# SONIVIO - Experience Music
+# SONIVIO — Experience Music
 
-SONIVIO is a modern, high-performance music streaming application built with React, TypeScript, and Tailwind CSS. It leverages the YouTube Data API v3 to provide a vast library of music, combined with a sleek, interactive user interface.
+![SONIVIO Preview](https://raw.githubusercontent.com/vijaybarhate/SONIVIO-Music-Player/main/.github/preview.png)
 
-![SONIVIO Preview](<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/8f143e0b-1550-48cb-b836-86f959a4ea9c" />)
+Live demo: https://vijaybarhate.github.io/SONIVIO-Music-Player/
 
+SONIVIO is a modern, fast, and beautiful music streaming web app that uses the YouTube Data API v3 to search and play music. Built with React, TypeScript, and Tailwind CSS, it focuses on smooth animations, responsive design, and excellent performance.
 
-demo link - https://vijaybarhate.github.io/SONIVIO-Music-Player/
+## 🚀 Highlights
 
-## 🚀 Features
+- Search and stream music via the YouTube Data API v3
+- Responsive, accessible UI with smooth animations (Framer Motion)
+- Lightweight state management with Zustand
+- Fast builds and dev experience powered by Vite
+- Clean glassmorphism-inspired design
 
-- **YouTube API Integration:** Search and stream millions of tracks directly from YouTube.
-- **Modern UI/UX:** A beautiful, responsive interface designed with Framer Motion for smooth animations.
-- **Smart Search:** Find your favorite artists, albums, and songs with ease.
-- **Interactive Player:** Full playback controls, volume management, and a dedicated queue system.
-- **Glassmorphism Design:** A modern aesthetic with blurred backgrounds and vibrant accents.
-- **Fast Performance:** Optimized with Vite and Zustand for efficient state management.
+## ✨ Features
 
-## 🛠️ Tech Stack
+- Search YouTube for songs, artists, and playlists
+- Persistent playback queue with play / pause / skip controls
+- Volume control, seek bar, and track progress
+- Smooth transitions and animations (Framer Motion)
+- Mobile-friendly and responsive layout
 
-- **Frontend:** React 18, TypeScript
-- **Styling:** Tailwind CSS
-- **State Management:** Zustand
-- **Routing:** React Router 7
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
-- **API:** YouTube Data API v3 (via Axios)
+## 🧰 Tech Stack
+
+- React 18 + TypeScript
+- Vite
+- Tailwind CSS
+- Zustand (state management)
+- React Router
+- Framer Motion (animations)
+- Axios (YouTube API requests)
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- A YouTube Data API Key (from [Google Cloud Console](https://console.cloud.google.com/))
+- Node.js v18 or newer
+- A YouTube Data API v3 key (create one in Google Cloud Console)
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository
+
    ```bash
    git clone https://github.com/vijaybarhate/SONIVIO-Music-Player.git
    cd SONIVIO-Music-Player
    ```
 
-2. Install dependencies:
+2. Install dependencies
+
    ```bash
    npm install
+   # or yarn
    ```
 
-3. Set up environment variables:
-   Create a `.env` file in the root directory and add your API key:
+3. Create a `.env` file in the project root and add your YouTube API key:
+
    ```env
    VITE_YOUTUBE_API_KEY=your_api_key_here
    ```
 
-4. Start the development server:
+4. Start the dev server
+
    ```bash
    npm run dev
    ```
 
-## 🚀 Deployment
+Open http://localhost:5173 in your browser.
 
-The project is configured for deployment on GitHub Pages.
+## ⚙️ Available scripts
 
-To deploy your own version:
-1. Update the `base` in `vite.config.ts` to match your repository name.
-2. Run the deployment script:
+- `npm run dev` — start development server
+- `npm run build` — build for production
+- `npm run preview` — locally preview production build
+- `npm run deploy` — deploy to GitHub Pages (configured)
+
+## 🚀 Deployment (GitHub Pages)
+
+To deploy the app to GitHub Pages:
+
+1. Make sure `base` in `vite.config.ts` is set to `/SONIVIO-Music-Player/` (or your repo name).
+2. Build and deploy:
+
    ```bash
+   npm run build
    npm run deploy
    ```
 
-## 📄 License
+Your site will be available at: `https://<your-github-username>.github.io/SONIVIO-Music-Player/`
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🔒 Security
+
+- Never commit API keys. Keep `VITE_YOUTUBE_API_KEY` in `.env` and add `.env` to `.gitignore`.
+- For public demos, consider using a server-side proxy or serverless function to protect your API key and apply usage limits.
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feat/my-feature`
+3. Commit your changes and open a PR describing the change
+
+Please open issues for bugs or feature requests.
+
+## 📝 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
+
 Built with ❤️ by [Vijay Barhate](https://github.com/vijaybarhate)
