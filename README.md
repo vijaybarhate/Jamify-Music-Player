@@ -1,6 +1,6 @@
 # SONIVIO — Experience Music
 
-![SONIVIO Preview](public/playing.gif)
+<img width="1918" height="909" alt="SONIVIO Preview" src="https://github.com/user-attachments/assets/0874eef9-4626-4d93-b7fd-a3de7e15d439" />
 
 Live demo: [https://vijaybarhate.github.io/SONIVIO-Music-Player/](https://vijaybarhate.github.io/SONIVIO-Music-Player/)
 
