@@ -34,8 +34,8 @@ SONIVIO is a modern, high-performance music streaming application built with Rea
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/vijaybarhate/Jamify-Music-Player.git
-   cd Jamify-Music-Player
+   git clone https://github.com/vijaybarhate/SONIVIO-Music-Player.git
+   cd SONIVIO-Music-Player
    ```
 
 2. Install dependencies:
