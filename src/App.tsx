@@ -8,7 +8,7 @@ import About from './pages/About';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Jamify-Music-Player">
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
