@@ -1,13 +1,7 @@
 # SONIVIO — Experience Music
-<<<<<<< HEAD
-=======
 
-![SONIVIO Preview](https://raw.githubusercontent.com/vijaybarhate/SONIVIO-Music-Player/main/.github/preview.png)
->>>>>>> 3007c8c3811541bef60e070156dcb3737f72d5bf
+![SONIVIO Preview](public/playing.gif)
 
-Live demo: https://vijaybarhate.github.io/SONIVIO-Music-Player/
-
-<<<<<<< HEAD
 Live demo: [https://vijaybarhate.github.io/SONIVIO-Music-Player/](https://vijaybarhate.github.io/SONIVIO-Music-Player/)
 
 SONIVIO is a modern, fast, and beautiful music streaming web app that uses the YouTube Data API v3 to search and play music. Built with React, TypeScript, and Tailwind CSS, it focuses on smooth animations, responsive design, and excellent performance.
@@ -20,18 +14,6 @@ SONIVIO is a modern, fast, and beautiful music streaming web app that uses the Y
 - Fast builds and dev experience powered by Vite
 - Clean glassmorphism-inspired design
 
-=======
-SONIVIO is a modern, fast, and beautiful music streaming web app that uses the YouTube Data API v3 to search and play music. Built with React, TypeScript, and Tailwind CSS, it focuses on smooth animations, responsive design, and excellent performance.
-
-## 🚀 Highlights
-
-- Search and stream music via the YouTube Data API v3
-- Responsive, accessible UI with smooth animations (Framer Motion)
-- Lightweight state management with Zustand
-- Fast builds and dev experience powered by Vite
-- Clean glassmorphism-inspired design
-
->>>>>>> 3007c8c3811541bef60e070156dcb3737f72d5bf
 ## ✨ Features
 
 - Search YouTube for songs, artists, and playlists
@@ -55,11 +37,7 @@ SONIVIO is a modern, fast, and beautiful music streaming web app that uses the Y
 ### Prerequisites
 
 - Node.js v18 or newer
-<<<<<<< HEAD
 - A YouTube Data API v3 key (create one in [Google Cloud Console](https://console.cloud.google.com/))
-=======
-- A YouTube Data API v3 key (create one in Google Cloud Console)
->>>>>>> 3007c8c3811541bef60e070156dcb3737f72d5bf
 
 ### Installation
 
@@ -89,11 +67,7 @@ SONIVIO is a modern, fast, and beautiful music streaming web app that uses the Y
    npm run dev
    ```
 
-<<<<<<< HEAD
 Open [http://localhost:5173](http://localhost:5173) in your browser.
-=======
-Open http://localhost:5173 in your browser.
->>>>>>> 3007c8c3811541bef60e070156dcb3737f72d5bf
 
 ## ⚙️ Available scripts
 
@@ -110,15 +84,10 @@ To deploy the app to GitHub Pages:
 2. Build and deploy:
 
    ```bash
-   npm run build
    npm run deploy
    ```
 
-<<<<<<< HEAD
 Your site will be available at: `https://vijaybarhate.github.io/SONIVIO-Music-Player/`
-=======
-Your site will be available at: `https://<your-github-username>.github.io/SONIVIO-Music-Player/`
->>>>>>> 3007c8c3811541bef60e070156dcb3737f72d5bf
 
 ## 🔒 Security
 
