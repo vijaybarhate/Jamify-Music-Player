@@ -1,43 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .liquid-glass {
-    @apply bg-surface/40 backdrop-blur-md border border-white/5 shadow-xl;
-  }
-  
-  .liquid-glass-strong {
-    @apply bg-surface/60 backdrop-blur-xl border border-white/10 shadow-2xl;
-  }
-  
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
+:root {
+  color-scheme: dark;
 }
 
 body {
-  @apply bg-background text-text-primary;
-  overflow-x: hidden;
+  @apply bg-[#050816] text-white overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif];
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-['Outfit',sans-serif];
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-surface-light rounded-full;
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-text-muted;
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Input Range Styling */
+input[type='range'] {
+  @apply cursor-pointer bg-transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  @apply appearance-none w-3 h-3 bg-white rounded-full border-none shadow-lg scale-0 group-hover:scale-100 transition-transform;
+}
+
+input[type='range']:hover::-webkit-slider-thumb {
+  @apply scale-100;
+}
+
+/* Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

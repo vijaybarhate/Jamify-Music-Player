@@ -1,27 +1,28 @@
-import { Navbar } from './components/layout/Navbar';
-import { Hero } from './components/sections/Hero';
-import { Features } from './components/sections/Features';
-import { Showcase } from './components/sections/Showcase';
-import { Discovery } from './components/sections/Discovery';
-import { Testimonials } from './components/sections/Testimonials';
-import { CTA } from './components/sections/CTA';
-import { Footer } from './components/sections/Footer';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppLayout from './components/layout/AppLayout';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Library from './pages/Library';
+import About from './pages/About';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <Hero />
-        <Features />
-        <Showcase />
-        <Discovery />
-        <Testimonials />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="search" element={<Search />} />
+          <Route path="library" element={<Library />} />
+          <Route path="favorites" element={<Library />} />
+          <Route path="recent" element={<Library />} />
+          <Route path="playlists" element={<Library />} />
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
