@@ -1,4 +1,4 @@
-# 🎵 Jamify Music Player
+# 🎵 Sonivio Music Player
 
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -42,7 +42,7 @@ A modern web-based music player built using HTML, CSS, and JavaScript with a cle
 
 ## 🌐 Live Demo
 
-*[click to open demo page](https://vijaybarhate.github.io/Jamify-Music-Player/)*
+*[click to open demo page](https://vijaybarhate.github.io/Sonivio-Music-Player/)*
 
 ---
 
