@@ -2,6 +2,8 @@
 
 <img width="1918" height="909" alt="SONIVIO Preview" src="https://github.com/user-attachments/assets/0874eef9-4626-4d93-b7fd-a3de7e15d439" />
 
+
+
 Live demo: [https://vijaybarhate.github.io/SONIVIO-Music-Player/](https://vijaybarhate.github.io/SONIVIO-Music-Player/)
 
 SONIVIO is a modern, fast, and beautiful music streaming web app that uses the YouTube Data API v3 to search and play music. Built with React, TypeScript, and Tailwind CSS, it focuses on smooth animations, responsive design, and excellent performance.
