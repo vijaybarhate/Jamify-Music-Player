@@ -1,5 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import Sidebar from './Sidebar';
 import BottomNav from './BottomNav';
 import BottomPlayer from '../player/BottomPlayer';
@@ -8,26 +9,28 @@ import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 
 const AppLayout: React.FC = () => {
   useKeyboardShortcuts();
-  
-  return (
-    <div className="flex min-h-screen bg-[#050816] text-white selection:bg-[#38BDF8]/30 overflow-x-hidden">
-      {/* Persistent Hidden Player */}
-      <HiddenYouTube />
-      
-      {/* Sidebar - Desktop Only */}
-      <Sidebar />
+  const location = useLocation();
 
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col min-w-0 pb-32 md:pb-28">
+  return (
+    <div className="flex min-h-screen bg-bg text-text overflow-hidden">
+      <HiddenYouTube />
+      <Sidebar />
+      <main className="flex-1 flex flex-col min-w-0 pb-40 md:pb-28">
         <div className="flex-1">
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </main>
-
-      {/* Bottom Audio Player - Always Visible */}
       <BottomPlayer />
-
-      {/* Bottom Navigation - Mobile Only */}
       <BottomNav />
     </div>
   );

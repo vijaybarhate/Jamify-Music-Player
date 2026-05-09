@@ -5,32 +5,31 @@ import { usePlayerStore } from '../../store/playerStore';
 const VolumeControl: React.FC = () => {
   const { volume, isMuted, setVolume, toggleMute } = usePlayerStore();
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVolume(Number(e.target.value));
-  };
-
-  const VolumeIcon = isMuted || volume === 0 ? VolumeX : volume < 50 ? Volume1 : Volume2;
+  const effectiveVol = isMuted ? 0 : volume;
+  const VolumeIcon = effectiveVol === 0 ? VolumeX : effectiveVol < 50 ? Volume1 : Volume2;
 
   return (
-    <div className="flex items-center gap-2 group w-32">
-      <button 
+    <div className="flex items-center gap-2 group w-28">
+      <button
         onClick={toggleMute}
-        className="text-gray-400 hover:text-white transition-colors p-1"
+        className="text-text-sub hover:text-text transition-colors p-1"
       >
-        <VolumeIcon size={20} />
+        <VolumeIcon size={18} />
       </button>
-      <div className="relative flex-1 flex items-center h-4">
+
+      <div className="relative flex-1 flex items-center h-5">
         <input
           type="range"
           min="0"
           max="100"
-          value={isMuted ? 0 : volume}
-          onChange={handleVolumeChange}
-          className="absolute w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer z-10 accent-[#38BDF8]"
+          value={effectiveVol}
+          onChange={(e) => setVolume(Number(e.target.value))}
+          className="absolute w-full z-10"
         />
-        <div 
-          className="absolute h-1 bg-[#38BDF8] rounded-full pointer-events-none group-hover:bg-[#60A5FA]"
-          style={{ width: `${isMuted ? 0 : volume}%` }}
+        <div className="absolute w-full h-1 bg-surface-light rounded-full" />
+        <div
+          className="absolute h-1 bg-brand rounded-full pointer-events-none"
+          style={{ width: `${effectiveVol}%` }}
         />
       </div>
     </div>

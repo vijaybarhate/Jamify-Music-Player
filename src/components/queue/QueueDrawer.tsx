@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Trash2, GripVertical } from 'lucide-react';
+import { X, Trash2 } from 'lucide-react';
 import { usePlayerStore } from '../../store/playerStore';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -15,110 +15,109 @@ const QueueDrawer: React.FC<QueueDrawerProps> = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+            className="fixed inset-0 bg-black/70 z-[60]"
           />
-          <motion.div 
+          <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-[#0B1020] border-l border-white/5 z-[70] shadow-2xl flex flex-col"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-bg-light z-[70] flex flex-col"
           >
-            <div className="p-6 border-b border-white/5 flex items-center justify-between">
+            {/* Header */}
+            <div className="p-5 border-b border-white/10 flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold">Queue</h2>
-                <p className="text-sm text-gray-500">{queue.length} tracks</p>
+                <h2 className="text-xl font-bold">Queue</h2>
+                <p className="text-sm text-text-sub mt-1">{queue.length} tracks</p>
               </div>
               <div className="flex items-center gap-2">
-                <button 
+                <button
                   onClick={clearQueue}
-                  className="p-2 text-gray-500 hover:text-red-400 transition-colors"
+                  className="p-2 text-text-sub hover:text-red-500 transition-colors rounded-full hover:bg-white/5"
                   title="Clear Queue"
                 >
                   <Trash2 size={20} />
                 </button>
-                <button 
+                <button
                   onClick={onClose}
-                  className="p-2 text-gray-400 hover:text-white transition-colors bg-white/5 rounded-full"
+                  className="p-2 text-text-sub hover:text-text transition-colors rounded-full hover:bg-white/5"
                 >
                   <X size={20} />
                 </button>
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-2">
+            {/* List */}
+            <div className="flex-1 overflow-y-auto p-3 space-y-2">
               {queue.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
-                  <p>Your queue is empty</p>
+                <div className="flex flex-col items-center justify-center h-full text-text-sub">
+                  <p className="text-sm">Your queue is empty</p>
                 </div>
               ) : (
                 queue.map((track, index) => (
-                  <div 
+                  <motion.div
                     key={`${track.id}-${index}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.03 }}
                     className={`
-                      group flex items-center gap-4 p-3 rounded-xl transition-all
-                      ${currentTrack?.id === track.id ? 'bg-white/10 ring-1 ring-white/10' : 'hover:bg-white/5'}
+                      group flex items-center gap-3 p-2.5 rounded-lg transition-colors cursor-pointer
+                      ${currentTrack?.id === track.id ? 'bg-white/10' : 'hover:bg-white/5'}
                     `}
                   >
-                    <div className="text-xs font-medium text-gray-600 w-4">
+                    <span className={`text-xs font-mono w-5 text-center tabular-nums ${
+                      currentTrack?.id === track.id ? 'text-brand' : 'text-text-sub'
+                    }`}>
                       {index + 1}
-                    </div>
-                    <div className="relative w-12 h-12 flex-shrink-0">
-                      <img 
-                        src={track.thumbnail} 
+                    </span>
+
+                    <div className="w-10 h-10 flex-shrink-0 rounded overflow-hidden">
+                      <img
+                        src={track.thumbnail}
                         alt={track.title}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover"
                       />
-                      {currentTrack?.id === track.id && (
-                        <div className="absolute inset-0 bg-[#38BDF8]/40 flex items-center justify-center rounded-lg">
-                          <div className="flex gap-0.5 items-end h-3">
-                            {[1, 2, 3].map((i) => (
-                              <motion.div
-                                key={i}
-                                animate={{ height: [4, 10, 4] }}
-                                transition={{ repeat: Infinity, duration: 0.5, delay: i * 0.1 }}
-                                className="w-0.5 bg-white rounded-full"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </div>
+
                     <div className="flex-1 min-w-0">
-                      <h4 className={`text-sm font-semibold truncate ${currentTrack?.id === track.id ? 'text-[#38BDF8]' : 'text-white'}`}>
+                      <h4 className={`text-sm font-semibold truncate ${
+                        currentTrack?.id === track.id ? 'text-brand' : 'text-text'
+                      }`}>
                         {track.title}
                       </h4>
-                      <p className="text-xs text-gray-500 truncate">{track.artist}</p>
+                      <p className="text-xs text-text-sub truncate">{track.artist}</p>
                     </div>
-                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button 
-                        onClick={() => removeFromQueue(track.id)}
-                        className="p-2 text-gray-500 hover:text-white"
-                      >
-                        <X size={16} />
-                      </button>
-                      <div className="p-2 text-gray-700 cursor-grab">
-                        <GripVertical size={16} />
-                      </div>
-                    </div>
-                  </div>
+
+                    <button
+                      onClick={() => removeFromQueue(track.id)}
+                      className="p-1 text-text-sub hover:text-text opacity-0 group-hover:opacity-100 transition-all"
+                    >
+                      <X size={14} />
+                    </button>
+                  </motion.div>
                 ))
               )}
             </div>
 
+            {/* Now Playing Footer */}
             {currentTrack && (
-              <div className="p-6 border-t border-white/5 bg-white/5">
-                <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Now Playing</p>
-                <div className="flex items-center gap-4">
-                  <img src={currentTrack.thumbnail} className="w-16 h-16 rounded-xl object-cover shadow-lg" alt="" />
+              <div className="p-4 border-t border-white/10 bg-bg">
+                <p className="text-xs font-bold text-text-sub uppercase tracking-widest mb-3">
+                  Now Playing
+                </p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={currentTrack.thumbnail}
+                    className="w-14 h-14 rounded-md object-cover"
+                    alt=""
+                  />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-lg font-bold text-[#38BDF8] truncate">{currentTrack.title}</h4>
-                    <p className="text-sm text-gray-400 truncate">{currentTrack.artist}</p>
+                    <h4 className="text-base font-bold text-brand truncate">{currentTrack.title}</h4>
+                    <p className="text-sm text-text-sub truncate">{currentTrack.artist}</p>
                   </div>
                 </div>
               </div>

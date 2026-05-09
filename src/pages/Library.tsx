@@ -3,80 +3,87 @@ import { Library as LibraryIcon, Heart, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePlayerStore } from '../store/playerStore';
 import SongCard from '../components/cards/SongCard';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Library: React.FC = () => {
   const { likedSongs, recentlyPlayed } = usePlayerStore();
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
 
-  const isFavorites = path === '/favorites';
-  const isRecent = path === '/recent';
-
-  if (isFavorites) {
+  if (path === '/favorites') {
     return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="py-12 px-6"
-      >
-        <div className="flex items-end gap-6 mb-12">
-          <div className="w-48 h-48 bg-gradient-to-br from-[#8B5CF6] to-[#38BDF8] rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/20">
-            <Heart size={80} fill="white" className="text-white" />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 px-6">
+        {/* Hero */}
+        <div className="flex items-end gap-6 mb-10">
+          <div className="w-44 h-44 md:w-52 md:h-52 rounded-lg overflow-hidden flex-shrink-0">
+            <div className="w-full h-full bg-gradient-to-br from-brand to-green-800 flex items-center justify-center">
+              <Heart size={72} fill="black" className="text-black" />
+            </div>
           </div>
-          <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Playlist</p>
-            <h1 className="text-6xl font-black mb-4">Liked Songs</h1>
-            <p className="text-gray-400 font-medium">{likedSongs.length} songs</p>
+          <div className="pb-2">
+            <p className="text-xs font-bold text-text-sub uppercase tracking-widest mb-2">Playlist</p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-3">Liked Songs</h1>
+            <p className="text-text-sub">{likedSongs.length} songs</p>
           </div>
         </div>
 
         {likedSongs.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {likedSongs.map((track) => (
-              <SongCard key={track.id} track={track} context={likedSongs} />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {likedSongs.map((track, i) => (
+              <motion.div
+                key={track.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04 }}
+              >
+                <SongCard track={track} context={likedSongs} />
+              </motion.div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 text-gray-500">
+            <div className="w-24 h-24 bg-surface-light rounded-full flex items-center justify-center mb-6 text-text-sub">
               <Heart size={40} />
             </div>
             <h3 className="text-xl font-bold mb-2">No liked songs yet</h3>
-            <p className="text-gray-500">Songs you like will appear here.</p>
+            <p className="text-text-sub">Tap the heart on any song to save it here.</p>
           </div>
         )}
       </motion.div>
     );
   }
 
-  if (isRecent) {
+  if (path === '/recent') {
     return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="py-12 px-6"
-      >
-        <div className="flex items-center gap-4 mb-12">
-          <div className="p-3 bg-white/5 rounded-2xl text-[#38BDF8]">
-            <Clock size={32} />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 px-6">
+        <div className="flex items-center gap-5 mb-10">
+          <div className="p-4 bg-surface-light rounded-lg">
+            <Clock size={36} className="text-brand" />
           </div>
-          <h1 className="text-4xl font-black">Recently Played</h1>
+          <h1 className="text-4xl md:text-5xl font-bold">Recently Played</h1>
         </div>
 
         {recentlyPlayed.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {recentlyPlayed.map((track) => (
-              <SongCard key={track.id} track={track} context={recentlyPlayed} />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {recentlyPlayed.map((track, i) => (
+              <motion.div
+                key={track.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04 }}
+              >
+                <SongCard track={track} context={recentlyPlayed} />
+              </motion.div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 text-gray-500">
+            <div className="w-24 h-24 bg-surface-light rounded-full flex items-center justify-center mb-6 text-text-sub">
               <Clock size={40} />
             </div>
             <h3 className="text-xl font-bold mb-2">History is empty</h3>
-            <p className="text-gray-500">Your recently played tracks will show up here.</p>
+            <p className="text-text-sub">Your recently played tracks will show up here.</p>
           </div>
         )}
       </motion.div>
@@ -84,29 +91,35 @@ const Library: React.FC = () => {
   }
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="flex flex-col items-center justify-center min-h-[60vh] text-center px-6"
     >
-      <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-8 text-[#38BDF8]">
-        <LibraryIcon size={48} />
+      <div className="w-28 h-28 bg-surface-light rounded-full flex items-center justify-center mb-8">
+        <LibraryIcon size={52} className="text-brand" />
       </div>
-      <h1 className="text-4xl font-black mb-4">Your Library</h1>
-      <p className="text-gray-500 max-w-md text-lg">
+      <h1 className="text-4xl font-bold mb-4">Your Library</h1>
+      <p className="text-text-sub max-w-md text-lg mb-12">
         Keep track of your favorite artists, albums, and playlists here.
       </p>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 w-full max-w-lg">
-        <button className="p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all text-left group">
-          <Heart className="text-[#38BDF8] mb-4 group-hover:scale-110 transition-transform" />
-          <h3 className="font-bold text-xl">Liked Songs</h3>
-          <p className="text-gray-500 text-sm">{likedSongs.length} tracks</p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+        <button
+          onClick={() => navigate('/favorites')}
+          className="p-6 bg-surface-light rounded-lg text-left hover:bg-surface-light/70 transition-colors group"
+        >
+          <Heart className="text-brand mb-4 group-hover:scale-110 transition-transform" size={28} />
+          <h3 className="font-bold text-lg mb-1">Liked Songs</h3>
+          <p className="text-text-sub text-sm">{likedSongs.length} tracks</p>
         </button>
-        <button className="p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all text-left group">
-          <Clock className="text-[#8B5CF6] mb-4 group-hover:scale-110 transition-transform" />
-          <h3 className="font-bold text-xl">Recently Played</h3>
-          <p className="text-gray-500 text-sm">{recentlyPlayed.length} tracks</p>
+        <button
+          onClick={() => navigate('/recent')}
+          className="p-6 bg-surface-light rounded-lg text-left hover:bg-surface-light/70 transition-colors group"
+        >
+          <Clock className="text-brand mb-4 group-hover:scale-110 transition-transform" size={28} />
+          <h3 className="font-bold text-lg mb-1">Recently Played</h3>
+          <p className="text-text-sub text-sm">{recentlyPlayed.length} tracks</p>
         </button>
       </div>
     </motion.div>

@@ -7,45 +7,42 @@ const ProgressBar: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [localValue, setLocalValue] = useState(progress);
 
-  // Sync local value with store progress when not dragging
   useEffect(() => {
-    if (!isDragging) {
-      setLocalValue(progress);
-    }
+    if (!isDragging) setLocalValue(progress);
   }, [progress, isDragging]);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsDragging(true);
-    setLocalValue(Number(e.target.value));
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.target.value);
-    seek(newValue);
-    setIsDragging(false);
-  };
+  const pct = duration > 0 ? ((isDragging ? localValue : progress) / duration) * 100 : 0;
 
   return (
     <div className="flex items-center gap-3 w-full group">
-      <span className="text-[10px] text-gray-500 font-medium tabular-nums w-8">
+      <span className="text-xs text-text-sub font-mono tabular-nums w-10 text-right">
         {formatTime(isDragging ? localValue : progress)}
       </span>
-      <div className="relative flex-1 flex items-center h-4">
+
+      <div className="relative flex-1 flex items-center h-6">
         <input
           type="range"
           min="0"
           max={duration || 100}
           value={isDragging ? localValue : progress}
-          onInput={handleInput}
-          onChange={handleChange}
-          className="absolute w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer z-10 accent-[#38BDF8]"
+          onInput={(e) => {
+            setIsDragging(true);
+            setLocalValue(Number(e.currentTarget.value));
+          }}
+          onChange={(e) => {
+            seek(Number(e.currentTarget.value));
+            setIsDragging(false);
+          }}
+          className="absolute w-full z-10"
         />
-        <div 
-          className="absolute h-1 bg-gradient-to-r from-[#38BDF8] to-[#8B5CF6] rounded-full pointer-events-none group-hover:from-[#60A5FA] group-hover:to-[#A78BFA]"
-          style={{ width: `${((isDragging ? localValue : progress) / (duration || 1)) * 100}%` }}
+        <div className="absolute w-full h-1 bg-surface-light rounded-full group-hover:h-1.5 transition-all" />
+        <div
+          className="absolute h-1 bg-brand rounded-full pointer-events-none group-hover:h-1.5 transition-all"
+          style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-[10px] text-gray-500 font-medium tabular-nums w-8">
+
+      <span className="text-xs text-text-sub font-mono tabular-nums w-10">
         {formatTime(duration)}
       </span>
     </div>

@@ -1,63 +1,77 @@
 import React from 'react';
-import { Music2, Github, Globe, Shield, Cpu } from 'lucide-react';
+import { Music2, Github, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   const features = [
-    { icon: Globe, title: 'Global Search', desc: 'Access millions of tracks via the YouTube Data API.' },
-    { icon: Cpu, title: 'Futuristic UI', desc: 'Built with glassmorphism and modern design principles.' },
-    { icon: Shield, title: 'Quota Optimized', desc: 'Smart caching system to reduce API usage and improve speed.' },
+    { title: 'Global Search', desc: 'Access millions of tracks via the YouTube Data API.' },
+    { title: 'Immersive UI', desc: 'Dark interface inspired by Spotify design principles.' },
+    { title: 'Quota Optimized', desc: 'Smart caching to reduce API usage and improve speed.' },
+    { title: 'Instant Playback', desc: 'Stream audio directly with zero buffering.' },
   ];
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="max-w-4xl mx-auto px-6 py-12 md:py-20"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="max-w-4xl mx-auto px-6 py-12"
     >
+      {/* Logo */}
       <div className="flex flex-col items-center text-center mb-16">
-        <div className="w-20 h-20 bg-gradient-to-br from-[#38BDF8] to-[#8B5CF6] rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/20 mb-8">
-          <Music2 className="text-white w-10 h-10" />
-        </div>
-        <h1 className="text-5xl font-black mb-4">SONIVIO</h1>
-        <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full text-[#38BDF8] text-sm font-bold tracking-widest uppercase">
-          Version 2.0 — Futuristic Edition
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="w-20 h-20 bg-brand rounded-full flex items-center justify-center mb-8 shadow-lg shadow-brand/20"
+        >
+          <Music2 className="text-black w-10 h-10" />
+        </motion.div>
+        <h1 className="text-5xl font-bold mb-4">SONIVIO</h1>
+        <div className="px-4 py-1.5 bg-surface-light rounded-full text-brand text-sm font-bold uppercase tracking-widest">
+          Version 2.0
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 mb-20">
+      {/* Features */}
+      <div className="grid sm:grid-cols-2 gap-4 mb-16">
         {features.map((f, i) => (
-          <div key={i} className="p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
-            <f.icon className="text-[#38BDF8] mb-4" size={32} />
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            whileHover={{ y: -4 }}
+            className="p-6 bg-surface-light/30 rounded-lg hover:bg-surface-light/50 transition-colors"
+          >
             <h3 className="font-bold text-lg mb-2">{f.title}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
-          </div>
+            <p className="text-text-sub text-sm leading-relaxed">{f.desc}</p>
+          </motion.div>
         ))}
       </div>
 
-      <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed space-y-6">
+      {/* Description */}
+      <div className="text-text-sub leading-relaxed space-y-4 text-lg mb-16">
         <p>
-          SONIVIO is a premium, open-source music application designed to redefine the streaming experience. 
-          It combines the vast library of YouTube with a high-end, immersive interface inspired by modern 
-          operating systems and futuristic aesthetics.
+          SONIVIO is a premium, open-source music application designed to redefine the streaming
+          experience. It combines the vast library of YouTube with an immersive, Spotify-inspired
+          interface.
         </p>
         <p>
-          Built with React, TypeScript, and Tailwind CSS, SONIVIO prioritizes performance, 
-          responsiveness, and visual density. Our mission is to provide a platform that feels 
-          like a native desktop application, focused entirely on the music and the listener.
+          Built with React, TypeScript, and Tailwind CSS, SONIVIO prioritizes performance and
+          visual density. Our mission is to provide a platform that feels like a native
+          application, focused entirely on the music and the listener.
         </p>
       </div>
 
-      <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="flex items-center gap-6">
-          <a href="#" className="text-gray-500 hover:text-white transition-colors">
-            <Github size={24} />
+      {/* Footer */}
+      <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <a href="#" className="p-2 text-text-sub hover:text-text rounded-full hover:bg-white/10 transition-colors">
+            <Github size={22} />
           </a>
-          <a href="#" className="text-gray-500 hover:text-white transition-colors">
-            <Globe size={24} />
+          <a href="#" className="p-2 text-text-sub hover:text-text rounded-full hover:bg-white/10 transition-colors">
+            <Globe size={22} />
           </a>
         </div>
-        <div className="text-sm text-gray-600 font-medium">
+        <div className="text-sm text-text-sub">
           © 2026 SONIVIO. All rights reserved.
         </div>
       </div>

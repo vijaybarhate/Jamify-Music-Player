@@ -1,26 +1,19 @@
 import React from 'react';
-import { 
-  Play, 
-  Pause, 
-  SkipBack, 
-  SkipForward, 
-  Shuffle, 
-  Repeat, 
-  Repeat1 
-} from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Repeat1 } from 'lucide-react';
 import { usePlayerStore } from '../../store/playerStore';
+import { motion } from 'framer-motion';
 
 const PlayerControls: React.FC = () => {
-  const { 
-    isPlaying, 
-    shuffle, 
-    repeatMode, 
-    play, 
-    pause, 
-    next, 
-    previous, 
-    toggleShuffle, 
-    setRepeatMode 
+  const {
+    isPlaying,
+    shuffle,
+    repeatMode,
+    play,
+    pause,
+    next,
+    previous,
+    toggleShuffle,
+    setRepeatMode,
   } = usePlayerStore();
 
   const handleRepeatClick = () => {
@@ -31,37 +24,39 @@ const PlayerControls: React.FC = () => {
 
   return (
     <div className="flex items-center gap-6">
-      <button 
+      <button
         onClick={toggleShuffle}
-        className={`transition-colors ${shuffle ? 'text-[#38BDF8]' : 'text-gray-500 hover:text-white'}`}
+        className={`text-text-sub hover:text-text transition-colors ${shuffle ? 'text-brand' : ''}`}
       >
         <Shuffle size={18} />
       </button>
 
-      <button 
+      <button
         onClick={previous}
-        className="text-gray-400 hover:text-white transition-colors"
+        className="text-text-sub hover:text-text transition-colors"
       >
         <SkipBack size={24} fill="currentColor" />
       </button>
 
-      <button 
-        onClick={() => isPlaying ? pause() : play()}
-        className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-black hover:scale-105 transition-transform"
+      <motion.button
+        onClick={() => (isPlaying ? pause() : play())}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-10 h-10 flex items-center justify-center rounded-full bg-brand text-black hover:scale-105 transition-transform"
       >
         {isPlaying ? <Pause size={22} fill="currentColor" /> : <Play size={22} fill="currentColor" className="ml-1" />}
-      </button>
+      </motion.button>
 
-      <button 
+      <button
         onClick={next}
-        className="text-gray-400 hover:text-white transition-colors"
+        className="text-text-sub hover:text-text transition-colors"
       >
         <SkipForward size={24} fill="currentColor" />
       </button>
 
-      <button 
+      <button
         onClick={handleRepeatClick}
-        className={`transition-colors ${repeatMode !== 'none' ? 'text-[#38BDF8]' : 'text-gray-500 hover:text-white'}`}
+        className={`text-text-sub hover:text-text transition-colors ${repeatMode !== 'none' ? 'text-brand' : ''}`}
       >
         {repeatMode === 'one' ? <Repeat1 size={18} /> : <Repeat size={18} />}
       </button>

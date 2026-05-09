@@ -20,86 +20,97 @@ const ExpandedPlayer: React.FC = () => {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-          className="fixed inset-0 z-[100] bg-[#050816] flex flex-col"
+          className="fixed inset-0 z-[100] bg-bg flex flex-col"
         >
-          {/* Dynamic Background */}
+          {/* Background with gradient */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div 
-              className="absolute inset-0 scale-150 blur-[100px] opacity-30 transition-all duration-1000"
+            <div
+              className="absolute inset-0"
               style={{
-                background: `radial-gradient(circle at center, #38BDF8, #8B5CF6, #050816)`
+                background: `
+                  radial-gradient(circle at 30% 20%, rgba(29, 185, 84, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 70% 80%, rgba(29, 185, 84, 0.1) 0%, transparent 40%),
+                  linear-gradient(180deg, rgba(29, 185, 84, 0.05) 0%, #191414 100%)
+                `,
               }}
             />
           </div>
 
           {/* Header */}
           <div className="relative z-10 p-6 flex items-center justify-between">
-            <button 
+            <button
               onClick={() => setExpanded(false)}
-              className="p-2 text-white/60 hover:text-white transition-colors bg-white/5 rounded-full"
+              className="p-2 text-text-sub hover:text-text transition-colors"
             >
               <ChevronDown size={28} />
             </button>
             <div className="text-center">
-              <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Now Playing</p>
-              <p className="text-xs font-semibold text-white/80">{currentTrack.artist}</p>
+              <p className="text-xs font-bold text-text-sub uppercase tracking-widest">Now Playing</p>
+              <p className="text-sm font-semibold text-text/70 mt-1">{currentTrack.artist}</p>
             </div>
-            <button className="p-2 text-white/60 hover:text-white transition-colors">
+            <button className="p-2 text-text-sub hover:text-text transition-colors">
               <Share2 size={24} />
             </button>
           </div>
 
           {/* Main Content */}
-          <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-8 md:flex-row md:gap-20 md:max-w-6xl md:mx-auto w-full">
+          <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-8 md:flex-row md:gap-16 md:max-w-6xl md:mx-auto w-full">
             {/* Artwork */}
-            <motion.div 
-              layoutId="artwork"
-              className="w-full aspect-square max-w-[400px] shadow-2xl shadow-black/50 rounded-3xl overflow-hidden mb-12 md:mb-0"
+            <motion.div
+              className="w-full aspect-square max-w-[400px] mb-10 md:mb-0"
             >
-              <img 
-                src={currentTrack.thumbnail} 
-                alt={currentTrack.title}
-                className="w-full h-full object-cover"
-              />
+              <motion.div
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50"
+              >
+                <img
+                  src={currentTrack.thumbnail}
+                  alt={currentTrack.title}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </motion.div>
 
             {/* Info & Controls */}
-            <div className="w-full max-w-[500px]">
-              <div className="flex items-center justify-between mb-8">
-                <div className="min-w-0">
-                  <h1 className="text-3xl md:text-5xl font-black text-white truncate mb-2">
+            <div className="w-full max-w-[480px]">
+              <div className="flex items-start justify-between mb-8">
+                <div className="min-w-0 flex-1 pr-4">
+                  <h1 className="text-3xl md:text-4xl font-bold text-text truncate mb-2">
                     {currentTrack.title}
                   </h1>
-                  <p className="text-lg md:text-xl text-[#38BDF8] font-semibold opacity-80">
+                  <p className="text-xl text-text-sub">
                     {currentTrack.artist}
                   </p>
                 </div>
-                <button 
+                <button
                   onClick={() => toggleLike(currentTrack)}
-                  className={`p-3 rounded-full transition-all ${isLiked ? 'text-[#38BDF8] bg-[#38BDF8]/10' : 'text-white/40 hover:text-white'}`}
+                  className={`p-3 rounded-full transition-all ${
+                    isLiked
+                      ? 'text-brand bg-brand/10'
+                      : 'text-text-sub hover:text-text'
+                  }`}
                 >
-                  <Heart size={32} fill={isLiked ? "currentColor" : "none"} />
+                  <Heart size={28} fill={isLiked ? "currentColor" : "none"} />
                 </button>
               </div>
 
-              <div className="mb-12">
+              <div className="mb-10">
                 <ProgressBar />
               </div>
 
-              <div className="flex flex-col items-center gap-10">
-                <div className="scale-125">
-                  <PlayerControls />
-                </div>
-                
-                <div className="w-full flex items-center justify-between gap-8 pt-6 border-t border-white/5">
-                  <button className="text-white/40 hover:text-white">
-                    <ListMusic size={24} />
+              <div className="flex flex-col items-center gap-8">
+                <PlayerControls />
+
+                <div className="w-full flex items-center justify-between gap-8 pt-6 border-t border-white/10">
+                  <button className="text-text-sub hover:text-text transition-colors">
+                    <ListMusic size={22} />
                   </button>
                   <div className="flex-1 max-w-[200px]">
                     <VolumeControl />
                   </div>
-                  <button className="text-white/40 hover:text-white">
-                    <MoreHorizontal size={24} />
+                  <button className="text-text-sub hover:text-text transition-colors">
+                    <MoreHorizontal size={22} />
                   </button>
                 </div>
               </div>
